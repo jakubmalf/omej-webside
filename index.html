@@ -111,17 +111,16 @@
         overflow: hidden; /* no scroll */
       }
 
-  .page {
-    flex-direction: column;
-    align-items: flex-start;
-    height: calc(100% - 1rem); /* o chlup menší, aby se nevešlo na scroll */
-    width: calc(100% - 1rem);
-    margin: 0.5rem;            /* zpět bílý odstup kolem */
-    border: 1px solid #000;
-    box-sizing: border-box;
-  }
+      .page {
+        flex-direction: column;
+        align-items: flex-start;
+        height: calc(100% - 1rem); 
+        width: calc(100% - 1rem);
+        margin: 0.5rem;            
+        border: 1px solid #000;
+        box-sizing: border-box;
+      }
 
-     
       .right {
         order: 1;
         width: 100%;
@@ -136,11 +135,10 @@
         object-fit: contain;
       }
 
-    
       .left {
         order: 2;
         width: 100%;
-        padding: 0 1rem 0.5rem 1rem;
+        padding: 0 1rem 0.5rem 2rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -160,32 +158,38 @@
         flex-direction: row;
         align-items: flex-start;
         gap: 0.8rem;
+        margin-top: -2rem;
       }
 
       .logo {
-        width: 80px;
+        width: 120px; /* zvětšené logo */
         flex-shrink: 0;
-        margin: 0;
+        margin-left: -1rem;
       }
 
       .text {
-        font-size: 0.8rem;
-        max-width: calc(100% - 120px);
+        font-size: 0.6rem;
+        max-width: calc(85% - 140px);
         margin: 0;
+        text-align: left; /* text doleva */
+        margin-top: 1rem;
       }
 
       nav {
-        margin-top: 0.4rem;
+        margin-top: 0.6rem;
         display: flex;
         flex-direction: column;
-        gap: 0.15rem;
+        gap: 0.3rem;
+        align-items: flex-end; /* menu doprava */
+        text-align: right;
+        margin-right: 5rem;
       }
 
       nav a {
-        font-size: 0.85rem;
+        font-size: 1rem; /* zvětšené položky menu */
+        padding-right: 0.8rem;
       }
 
-      
       .email {
         position: relative;
         bottom: auto;
