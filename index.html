@@ -8,150 +8,223 @@
   <link rel="icon" type="image/png" href="favicon.png">
 
   <style>
-    :root {
-      --left-bg: linear-gradient(180deg, #000000, #000000);
-      --text-color: #f0f0f0;
-      --accent: #b873ff;
-      --photo-url: url('background.jpg'); 
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; font-family: 'Share Tech Mono', monospace; }
-
     body {
-      display: auto;
-      height: auto;
-      overflow: hidden;
-      color: var(--text-color);
+      font-family: "Times New Roman", Times, serif;
       background: #ffffff;
+      margin: 0;
+      padding: 0;
+      color: #000;
+      overflow: hidden; /* no scrolling on desktop */
     }
 
-    /* Levý panel */
+    /* Frame container */
+    .page {
+      display: flex;
+      align-items: center;
+      height: calc(100vh - 1rem);
+      margin: 0.5rem;
+      border: 1px solid #000;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    /* LEFT: logo + text + menu */
     .left {
-      width: auto;
-      background: rgb(255, 255, 255);
+      flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: space-between; /* keeps email at bottom */
-      align-items: center;    
-      padding: 2rem;
-      text-align: center;
+      justify-content: center;
+      align-items: flex-end;
+      padding: 2rem 1rem 2rem 2rem;
+      text-align: right;
+      box-sizing: border-box;
     }
 
-    /* Center content block in desktop */
     .center-block {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      flex: 1; /* take available space for centering */
-      gap: 1rem;
+      align-items: flex-end;
+      gap: 0.5rem;
     }
 
     .logo {
-      width: 500px;
-      height: 150px;
+      width: 220px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .text {
+      font-style: italic;
+      font-size: 1.1rem;
+      max-width: 220px;
+      text-align: right;
     }
 
     nav {
       display: flex;
       flex-direction: column;
-      gap: 0.2rem;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
     }
 
     nav a {
       color: black;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       text-decoration: none;
-      font-family: Arial, Helvetica, sans-serif;
-
-      border: 3px solid transparent;
     }
 
     nav a:hover {
-      border: 1px solid #a12aebd1;
+      text-decoration: underline;
     }
 
+    /* Email in bottom-left on desktop */
     .email {
-      color: black;
-      font-family: Arial, Helvetica, sans-serif;
-      margin-top: 1rem;
-      font-size: 1.4rem;
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      font-size: 1.2rem;
     }
 
-    .text {
-    color: #a12aebd1;
-    font-size: 1.4rem;
-    }
-
-    /* Pravá fotka */
+    /* RIGHT: photo */
     .right {
-      width: 60%;
-      background-image: var(--photo-url);
-      background-size: cover;
-      background-position: center;
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 2rem;
+      background: #fff;
+      box-sizing: border-box;
     }
 
-    /* Mobile photo */
-    .mobile-photo {
-      display: none; /* hidden on desktop */
+    .right img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
-    /* Mobilní zobrazení */
+    /* MOBILE */
     @media (max-width: 768px) {
-      html, body { height: 100%; }
-      body {
-        flex-direction: column;
-        min-height: 100vh;
-      }
-      .left {
-        width: 100%;
+      html, body {
         height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /* no scroll */
       }
-      .logo {
-        width: 700px; /* keep original size */
-        height: 70px;
-        max-width: 80%; /* allow scaling on smaller phones */
+
+  .page {
+    flex-direction: column;
+    align-items: flex-start;
+    height: calc(100% - 1rem); /* o chlup menší, aby se nevešlo na scroll */
+    width: calc(100% - 1rem);
+    margin: 0.5rem;            /* zpět bílý odstup kolem */
+    border: 1px solid #000;
+    box-sizing: border-box;
+  }
+
+     
+      .right {
+        order: 1;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        padding: 0.5rem;
       }
-      .right { display: none; } /* hide right panel on mobile */
-      
-      /* Show mobile photo with perfect fit inside border */
-      .mobile-photo {
-        display: block;
-        width: 80%;
+
+      .right img {
+        max-width: 55vw;
         height: auto;
-        margin: 1rem auto;
-        border: 1px solid #a12aebd1; /* purple frame */
-        box-sizing: border-box;
-        object-fit: contain; /* keeps whole image visible */
+        object-fit: contain;
+      }
+
+    
+      .left {
+        order: 2;
+        width: 100%;
+        padding: 0 1rem 0.5rem 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        align-items: stretch;
+        text-align: left;
+      }
+
+      .left-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .center-block {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 0.8rem;
+      }
+
+      .logo {
+        width: 110px;
+        flex-shrink: 0;
+        margin: 0;
+      }
+
+      .text {
+        font-size: 0.8rem;
+        max-width: calc(100% - 120px);
+        margin: 0;
+      }
+
+      nav {
+        margin-top: 0.4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+      }
+
+      nav a {
+        font-size: 0.85rem;
+      }
+
+      
+      .email {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        margin-top: auto;
+        font-size: 0.85rem;
+        padding: 0.8rem 0;
+        text-align: left;
       }
     }
   </style>
 </head>
 <body>
-  <div class="left">
-    <div class="center-block">
-      <img src="logo12.png" alt="OMĚJ logo" class="logo">
+  <div class="page">
+    <div class="left">
+      <div class="left-content">
+        <div class="center-block">
+          <img src="logo12.png" alt="OMĚJ logo" class="logo">
+          <div class="text">
+              Ohrožený a jedovatý druh z valašské krajiny. 
+          </div>
+        </div>
 
-      <!-- Mobile photo (shown only on phones) -->
-      <img src="background.jpg" alt="OMĚJ photo" class="mobile-photo">
-      <div class="text">
-        VIDEO TMA OUT NOW !
+        <nav>
+          <a href="https://www.instagram.com/omejomej/" target="_blank" rel="noopener">INSTAGRAM</a>
+          <a href="https://omej.bandcamp.com" target="_blank" rel="noopener">BANDCAMP</a>
+          <a href="https://www.youtube.com/@omej-omej" target="_blank" rel="noopener">YOUTUBE</a>
+          <a href="https://omej.bandcamp.com" target="_blank" rel="noopener">SPOTIFY</a>
+        </nav>
       </div>
 
-      <nav>
-        <a href="https://www.instagram.com/omejomej/" target="_blank" rel="noopener">INSTAGRAM</a>
-        <a href="https://omej.bandcamp.com" target="_blank" rel="noopener">BANDCAMP</a>
-        <a href="https://youtube.com" target="_blank" rel="noopener">YOUTUBE</a>
-        <a href="https://omej.bandcamp.com" target="_blank" rel="noopener">SPOTIFY</a>
-      </nav>
-    
+      <div class="email">
+        omej@post.cz
+      </div>
     </div>
-    <div class="email">
-      omej@post.cz
+
+    <div class="right">
+      <img src="background.jpg" alt="Plakátová fotka">
     </div>
   </div>
-
-  <div class="right"></div>
 </body>
 </html>
